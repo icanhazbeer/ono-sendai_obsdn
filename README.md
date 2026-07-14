@@ -1,6 +1,14 @@
 # Ono-Sendai_obsdn
 
-# !! note: this theme is currently unmaintained, and will not work properly in newer obsidian versions. !! 
+### !! revived 2026 — now works with Obsidian 1.x !!
+
+> The original (June 2022) theme was CodeMirror 5–era and broke in modern
+> Obsidian. This fork adds a `manifest.json` + `theme.css` (modern theme
+> format) and a **modern-compat layer** that re-implements the editor styling
+> on CodeMirror 6 (Live Preview) — including the signature WYSIWYM headings,
+> edit-mode margins, the line-number/fold gutters, focus mode — plus the 1.x
+> tab bar, callouts, and the properties panel. The original CSS is preserved
+> intact above the compat layer.
 
 ### description
 
@@ -17,13 +25,15 @@ https://github.com/cannibalox/ono-sendai_obsdn/assets/4605693/28669765-4f7f-454d
 
 - anti distraction-free theme with a terminal flavor
 - inline transclusions
-- tab icons replaced by text
-- bigger popover previews with more content displayed
+- WYSIWYM headings in Source mode (`#` → `H1…H6` badges)
 - images scaled down with hover zoom
 - visible margins in edit mode
-- file explorer: columns view
 - file explorer: wrap long file names
 - aligned footnotes suptext for consistent leading
+
+> _1.x revival note:_ the old "tab icons replaced by text" and file-explorer
+> "columns view" hacks were dropped — they relied on pre-CodeMirror-6 DOM and
+> broke in modern Obsidian. Native tab icons are used instead.
 
 #### protips :
 
@@ -38,10 +48,16 @@ https://github.com/cannibalox/ono-sendai_obsdn/assets/4605693/28669765-4f7f-454d
 
 ### installation :
 
-- first backup your current css theme / css snippets
-- copy the file obsidian.css in the root of your obsidian folder (or browse and install from the community themes inside Obsidian's settings)
+- create a folder `Ono-Sendai` in `<your-vault>/.obsidian/themes/`
+- copy **`manifest.json`** and **`theme.css`** into it
+- in Obsidian: **Settings → Appearance → Themes → Manage → select "Ono-Sendai"** (or set it directly in `.obsidian/appearance.json` → `"cssTheme": "Ono-Sendai"`)
+- designed for **dark** mode; a light mode is also available
 - the font used in the screenshots is Cairo : https://fonts.google.com/specimen/Cairo?query=Cairo&selection.family=Armata|Cairo&sidebar.open=true
-  (font should be installed locally before running obsdidian)
+  (install the font locally before running Obsidian)
+
+> **note on focus mode:** edit mode dims the lines your cursor isn't on (a
+> ported feature). to disable it, delete the `FOCUS MODE` block near the end of
+> `theme.css`. the WYSIWYM `#`→`H1..H6` badges live just above it.
 
 ![](https://raw.githubusercontent.com/cannibalox/ono-sendai_obsdn/master/ono-sendai_obsdn_00a.png)
 
