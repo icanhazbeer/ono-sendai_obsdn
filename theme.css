@@ -3234,6 +3234,10 @@ body.theme-light {
   right: 4px;
   left: auto !important;
 }
+/* keep the theme's terminal `>>` marker; drop the duplicate native ↗ */
+.markdown-embed-link svg {
+  display: none !important;
+}
 
 /* command palette / quick switcher: retint the magenta selection
    (`#99108b`) to the theme accent */
