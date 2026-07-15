@@ -82,16 +82,22 @@ NOT yet been eyeballed in a running app. Spot-check when next in Obsidian:
 
 ## Possible directions (beyond the original)
 
-- [ ] **Alternate "Tessier-Ashpool" color scheme** — an optional palette variant
-      (Neuromancer deep cut: T-A is the corp, Ono-Sendai the deck maker). Reference:
-      `ref-tessier-ashpool-palette.png` (the "TA" boot logo). Palette reads as a
-      teal/green → magenta vertical gradient on black, more magenta/purple-forward
-      than the current cyan/green-forward theme: TA monogram fades cyan-green (top)
-      → magenta (bottom), "TESSIER-ASHPOOL" magenta, "CYBERSECURITY DIVISION" teal,
-      purple/magenta gradient chrome. Would swap the accent vars (`--text-accent`,
-      `--text-accent2`, `--interactive-accent`, `--accent-strong`) toward that
-      duotone; possibly ship as a style-settings option rather than replacing the
-      default. Pick exact hues from the reference image.
+- [~] **Alternate "Tessier-Ashpool" color scheme** — built as an opt-in
+      `body.ono-ta-mode` palette (theme.css "TESSIER-ASHPOOL MODE"): teal
+      `#26e0b8` / magenta `#ff2d84` / purple `#8b3ff0` duotone picked from
+      `ref-tessier-ashpool-palette.png` (H1/links teal, H2/accent-strong magenta,
+      interactive purple; active tab → purple-grey). Default look untouched when
+      the class is absent. Palette verified live 2026-07-14 (temp-forced); the
+      class-gated extras (tab fill, teal `::`) are code-only so far.
+- [~] **Interactive `:: ono-sendai` → `:: tessier-ashpool` easter egg** — click
+      the `::` wordmark 5× to flip into T-A mode. CSS can't count clicks, so this
+      is a tiny companion plugin (`companion-plugin/`, installed inert in the vault
+      at `.obsidian/plugins/ono-sendai-companion/`) that renders the clickable
+      wordmark, counts clicks, and toggles `body.ono-ta-mode` (persisted). Counter
+      logic unit-tested (`node companion-plugin/test/counter.test.js`, 6/6). NOT
+      live-tested end-to-end: the vault runs with Community plugins disabled
+      (Restricted mode) and I didn't flip that autonomously — enable the plugin to
+      try it (see `companion-plugin/README.md`).
 
 ## Notes
 

@@ -1,0 +1,10 @@
+{
+  "id": "ono-sendai-companion",
+  "name": "Ono-Sendai Companion",
+  "version": "0.1.0",
+  "minAppVersion": "1.0.0",
+  "description": "Interactive :: ono-sendai wordmark for the Ono-Sendai theme. Click the :: five times to morph the wordmark into :: tessier-ashpool and flip the theme into the Tessier-Ashpool color scheme.",
+  "author": "icanhazbeer",
+  "authorUrl": "https://github.com/icanhazbeer/ono-sendai_obsdn",
+  "isDesktopOnly": false
+}
