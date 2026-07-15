@@ -82,22 +82,25 @@ NOT yet been eyeballed in a running app. Spot-check when next in Obsidian:
 
 ## Possible directions (beyond the original)
 
-- [~] **Alternate "Tessier-Ashpool" color scheme** — built as an opt-in
-      `body.ono-ta-mode` palette (theme.css "TESSIER-ASHPOOL MODE"): teal
-      `#26e0b8` / magenta `#ff2d84` / purple `#8b3ff0` duotone picked from
-      `ref-tessier-ashpool-palette.png` (H1/links teal, H2/accent-strong magenta,
-      interactive purple; active tab → purple-grey). Default look untouched when
-      the class is absent. Palette verified live 2026-07-14 (temp-forced); the
-      class-gated extras (tab fill, teal `::`) are code-only so far.
-- [~] **Interactive `:: ono-sendai` → `:: tessier-ashpool` easter egg** — click
-      the `::` wordmark 5× to flip into T-A mode. CSS can't count clicks, so this
-      is a tiny companion plugin (`companion-plugin/`, installed inert in the vault
-      at `.obsidian/plugins/ono-sendai-companion/`) that renders the clickable
-      wordmark, counts clicks, and toggles `body.ono-ta-mode` (persisted). Counter
+- [~] **Faction color schemes + interactive wordmark cycle** — an opt-in
+      easter egg (theme.css "ALTERNATE SCHEMES"). Four Neuromancer-faction
+      palettes gated behind `body.ono-scheme-*` classes; default (no class) is the
+      classic look:
+      - **tessier-ashpool** — teal `#26e0b8` / magenta `#ff2d84` / purple `#8b3ff0`
+        (from `ref-tessier-ashpool-palette.png`)
+      - **turing police** — red `#ff3b3b` / amber `#ffb020` (alert/authority)
+      - **sense/net** — gold `#ffc233` / hot-pink `#ff4fa3` / broadcast-blue
+        `#22a7e0` (media gloss)
+      Each retints `--text-accent` / `--text-accent2` / `--interactive-accent` /
+      `--accent-strong` + the active-tab fill, and morphs the wordmark text. All
+      three palettes verified live 2026-07-15 (temp-forced).
+      Interaction: CSS can't count clicks, so a tiny companion plugin
+      (`companion-plugin/`, installed inert at
+      `.obsidian/plugins/ono-sendai-companion/`) renders the clickable wordmark and
+      cycles the scheme class on every 5× click of the `::` (persisted). Counter
       logic unit-tested (`node companion-plugin/test/counter.test.js`, 6/6). NOT
       live-tested end-to-end: the vault runs with Community plugins disabled
-      (Restricted mode) and I didn't flip that autonomously — enable the plugin to
-      try it (see `companion-plugin/README.md`).
+      (Restricted mode) — enable the plugin to try it (`companion-plugin/README.md`).
 
 ## Notes
 

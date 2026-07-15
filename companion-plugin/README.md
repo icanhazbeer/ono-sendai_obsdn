@@ -2,15 +2,22 @@
 
 A tiny optional plugin that makes the theme's `:: ono-sendai` status-bar wordmark
 **interactive**. Click the `::` five times (rapidly — within ~1.5s of each click)
-and the wordmark morphs into `:: tessier-ashpool`, flipping the whole theme into
-the **Tessier-Ashpool** color scheme (teal → magenta → purple duotone from the
-boot logo, `../ref-tessier-ashpool-palette.png`). Click the `::` five more times
-to flip back. The state persists across restarts.
+and the wordmark + theme **cycle through the Neuromancer factions**, each with its
+own palette:
+
+```
+ono-sendai  ->  tessier-ashpool  ->  turing police  ->  sense/net  ->  (back)
+ cyan/green      teal/magenta        red/amber          gold/pink/blue
+```
+
+Each 5-click advances one step; keep going to loop back to `ono-sendai`. The
+current scheme persists across restarts.
 
 A CSS theme can't count clicks (no JS), which is why this lives in a plugin. The
-plugin only adds the clickable wordmark and toggles a `body.ono-ta-mode` class —
-all the actual styling is in the theme's `theme.css` (the
-`TESSIER-ASHPOOL MODE` section).
+plugin only adds the clickable wordmark and sets a `body.ono-scheme-*` class —
+all the actual styling is in the theme's `theme.css` (the `ALTERNATE SCHEMES`
+section). Palettes are picked from `../ref-tessier-ashpool-palette.png` and the
+book's factions.
 
 ## How it works
 
@@ -18,8 +25,9 @@ all the actual styling is in the theme's `theme.css` (the
   static wordmark and shows this clickable one instead) and renders the wordmark
   as a status-bar item, pinned vertically to the bottom-left by the theme CSS.
 - Clicking the `::` runs a small counter (`stepCounter`); the 5th click within
-  the window toggles `body.ono-ta-mode` and swaps the wordmark text.
-- Disabling the plugin removes both classes, restoring the theme's default look.
+  the window advances to the next scheme — swapping the `body.ono-scheme-*`
+  class and the wordmark text.
+- Disabling the plugin removes the classes, restoring the theme's default look.
 
 The click-counter logic is unit-tested — `node test/counter.test.js`.
 

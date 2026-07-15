@@ -3444,30 +3444,54 @@ svg.canvas-background line {
 }
 
 /* ================================================================= */
-/* ==  TESSIER-ASHPOOL MODE  (opt-in easter egg)                   == */
-/* ==  Activated by `body.ono-ta-mode`, set by the companion       == */
-/* ==  plugin (click the `::` wordmark 5x) — or by hand / Style     == */
-/* ==  Settings. Shifts the cyan/green accents to the T-A           == */
-/* ==  teal->magenta duotone from the boot logo                    == */
-/* ==  (ref-tessier-ashpool-palette.png). The default look is       == */
-/* ==  untouched when the class is absent.                          == */
+/* ==  ALTERNATE SCHEMES  (opt-in easter-egg cycle)                == */
+/* ==  The companion plugin cycles a body class on each 5x click of == */
+/* ==  the `::` wordmark:                                           == */
+/* ==    (none) -> ono-scheme-tessier -> ono-scheme-turing          == */
+/* ==            -> ono-scheme-sensenet -> (none)                   == */
+/* ==  Each retints the accent vars to a Neuromancer faction and    == */
+/* ==  morphs the wordmark. Classes can also be set by hand / Style == */
+/* ==  Settings. Default look is untouched when no scheme is set.    == */
 /* ================================================================= */
-body.ono-ta-mode.theme-dark {
-  --text-accent: #26e0b8;              /* teal  — "CYBERSECURITY DIVISION" */
+
+/* --- Tessier-Ashpool: teal / magenta / purple (boot-logo duotone) --- */
+body.ono-scheme-tessier.theme-dark {
+  --text-accent: #26e0b8;              /* teal   — "CYBERSECURITY DIVISION" */
   --text-accent2: #ff2d84;            /* magenta — "TESSIER-ASHPOOL" */
   --interactive-accent: #8b3ff0;      /* purple — taskbar / key glow */
   --interactive-accent-rgb: 139, 63, 240;
-  --accent-strong: #ff2d84;           /* magenta */
+  --accent-strong: #ff2d84;
 }
-/* active editor tab: swap the teal-grey fill for a purple-grey to match */
-body.ono-ta-mode .workspace-split.mod-root .workspace-tab-header.is-active {
-  background-color: #33244f;
+body.ono-scheme-tessier .workspace-split.mod-root .workspace-tab-header.is-active {
+  background-color: #33244f;           /* purple-grey */
 }
-/* if the class is set without the plugin (manual / Style Settings), morph the
-   static wordmark text too */
-body.ono-ta-mode .status-bar::after {
-  content: ":: tessier-ashpool";
+body.ono-scheme-tessier .status-bar::after { content: ":: tessier-ashpool"; }
+
+/* --- Turing Police: red / amber (the AI-policing agency — alert/authority) --- */
+body.ono-scheme-turing.theme-dark {
+  --text-accent: #ff3b3b;              /* red */
+  --text-accent2: #ffb020;            /* amber */
+  --interactive-accent: #d01f1f;      /* deep red */
+  --interactive-accent-rgb: 208, 31, 31;
+  --accent-strong: #ff3b3b;
 }
+body.ono-scheme-turing .workspace-split.mod-root .workspace-tab-header.is-active {
+  background-color: #4a2020;           /* red-grey */
+}
+body.ono-scheme-turing .status-bar::after { content: ":: turing police"; }
+
+/* --- Sense/Net: gold / hot-pink / broadcast-blue (media megacorp gloss) --- */
+body.ono-scheme-sensenet.theme-dark {
+  --text-accent: #ffc233;             /* gold */
+  --text-accent2: #ff4fa3;            /* hot pink */
+  --interactive-accent: #22a7e0;      /* broadcast blue */
+  --interactive-accent-rgb: 34, 167, 224;
+  --accent-strong: #ff4fa3;
+}
+body.ono-scheme-sensenet .workspace-split.mod-root .workspace-tab-header.is-active {
+  background-color: #4a3a18;           /* gold-grey */
+}
+body.ono-scheme-sensenet .status-bar::after { content: ":: sense/net"; }
 
 /* ---- interactive wordmark (rendered by the companion plugin) ---- */
 /* the plugin adds `ono-sendai-interactive` to <body> and draws its own
@@ -3492,18 +3516,16 @@ body.ono-sendai-interactive .status-bar::after {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--accent-strong);
+  color: var(--accent-strong);        /* the name takes accent-strong */
   cursor: default;
   user-select: none;
   z-index: 999;
 }
+/* two-tone in every scheme: `::` takes --text-accent, the name --accent-strong */
 .ono-wordmark .ono-mark {              /* the `::` — the click target */
+  color: var(--text-accent);
   cursor: pointer;
 }
 .ono-wordmark .ono-mark:hover {
   filter: brightness(1.3);
-}
-/* in T-A mode, tint the `::` teal against the magenta wordmark for the duotone */
-body.ono-ta-mode .ono-wordmark .ono-mark {
-  color: var(--text-accent);
 }
