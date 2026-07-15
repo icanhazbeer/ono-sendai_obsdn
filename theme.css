@@ -2926,10 +2926,30 @@ body {
   content: none !important;
 }
 
-/* status bar: drop the ": :" decoration that was positioned for the
-   old left-aligned bar and now floats as a stray red mark */
+/* ================================================================= */
+/* ==  RECREATION: `:: ono-sendai` status-bar wordmark             == */
+/* ==  The original pinned a magenta `::` marker + `ono-sendai`     == */
+/* ==  wordmark to the bottom-LEFT corner. The 2022 rule placed it  == */
+/* ==  with `position:absolute; left:30px` on `.status-bar`, but    == */
+/* ==  1.x right-aligns the status bar, so it floated mid-bar (why  == */
+/* ==  the first modernization pass dropped it). Re-pin to the      == */
+/* ==  viewport bottom-left with `position:fixed`, which ignores    == */
+/* ==  the status bar's own (right-aligned) box.                   == */
+/* ================================================================= */
 .status-bar::after {
-  content: none !important;
+  content: ":: ono-sendai";
+  position: fixed;
+  left: 12px;
+  bottom: 0;
+  height: 22px;
+  line-height: 22px;
+  color: var(--accent-strong);
+  font-family: var(--font-monospace, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  z-index: var(--layer-status-bar);
 }
 
 /* ---- sidebar icon sizing: modern Obsidian renders nav/pane header
@@ -3237,6 +3257,113 @@ body.theme-light {
 /* keep the theme's terminal `>>` marker; drop the duplicate native ↗ */
 .markdown-embed-link svg {
   display: none !important;
+}
+
+/* ================================================================= */
+/* ==  RECREATION: slanted / angled tab headers                    == */
+/* ==  The original drew a diagonal-cut "chevron" tab via a 30px    == */
+/* ==  `.view-header-title::after` border-triangle; that element is == */
+/* ==  hidden in 1.x, so re-create the shape on the modern          == */
+/* ==  main-editor tab bar with clip-path. The slant only READS if  == */
+/* ==  the tab fill contrasts with the (black) bar behind it, so    == */
+/* ==  mirror the original fills: active tab = teal                 == */
+/* ==  `--background-secondary` (#0f5172), inactive = dark-grey     == */
+/* ==  `--background-primary` (#17191a) — both stand out against    == */
+/* ==  the pure-black container. Sidebar tabs are left alone.       == */
+/* ================================================================= */
+.workspace-split.mod-root .workspace-tab-header {
+  background-color: #15171a;                     /* inactive: dim recessed grey */
+  /* PARALLELOGRAM: both edges slant in parallel (16px), so a tab's left edge
+     mirrors the previous tab's right edge and — with the matching -16px overlap
+     below — adjacent tabs tessellate instead of butting flat straight edges. */
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 100%, 16px 100%);
+  border-radius: 0 !important;
+  border-top: 2px solid transparent;             /* reserve space for the active accent */
+  padding-left: 20px;                            /* clear the left slant */
+  padding-right: 22px;                           /* clear the right slant + ✕ */
+  margin-right: -16px;                           /* overlap == slant → edges fit together */
+  transition: none;
+}
+.workspace-split.mod-root .workspace-tab-header.is-active {
+  /* active: lifted muted teal + a crisp cyan top accent so it clearly pops off
+     the dim inactive tabs without the loud saturated `--background-secondary`. */
+  background-color: #244a57;
+  color: var(--text-normal);
+  border-top: 2px solid var(--interactive-accent);
+  box-shadow: none !important;                   /* drop the stock inset underline */
+  z-index: 2;                                    /* active reads on top of neighbours */
+}
+/* the original ran a cyan divider under the header row; put it on the
+   (unclipped) main-editor tab container so the slants don't slice it */
+.workspace-split.mod-root .workspace-tab-header-container {
+  border-bottom: 2px solid var(--interactive-accent);
+}
+
+/* ================================================================= */
+/* ==  RECREATION: text sidebar tabs, language-independent          == */
+/* ==  The original showed FILES / STAR / SEARCH as words in place  == */
+/* ==  of icons. The 2022 rules keyed off the localized `aria-label`== */
+/* ==  (English + Chinese strings only), which is why they broke in == */
+/* ==  other UI languages. Re-key off the stable internal           == */
+/* ==  `data-type` so the labels render in every language. The old  == */
+/* ==  aria-label rules are left in place as an English fallback;   == */
+/* ==  when data-type is present these later rules win the same     == */
+/* ==  `::after`, so the label never doubles. (`starred` = pre-1.3, == */
+/* ==  `bookmarks` = the renamed 1.3+ pane; both map to STAR.)      == */
+/* ================================================================= */
+.workspace-tab-header[data-type="file-explorer"] .workspace-tab-header-inner-icon,
+.workspace-tab-header[data-type="search"] .workspace-tab-header-inner-icon,
+.workspace-tab-header[data-type="bookmarks"] .workspace-tab-header-inner-icon,
+.workspace-tab-header[data-type="starred"] .workspace-tab-header-inner-icon {
+  display: none;
+}
+.workspace-tab-header[data-type="file-explorer"] .workspace-tab-header-inner::after {
+  content: "FILES";
+}
+.workspace-tab-header[data-type="search"] .workspace-tab-header-inner::after {
+  content: "SEARCH";
+}
+.workspace-tab-header[data-type="bookmarks"] .workspace-tab-header-inner::after,
+.workspace-tab-header[data-type="starred"] .workspace-tab-header-inner::after {
+  content: "STAR";
+}
+.workspace-tab-header[data-type="file-explorer"] .workspace-tab-header-inner::after,
+.workspace-tab-header[data-type="search"] .workspace-tab-header-inner::after,
+.workspace-tab-header[data-type="bookmarks"] .workspace-tab-header-inner::after,
+.workspace-tab-header[data-type="starred"] .workspace-tab-header-inner::after {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: inherit;
+}
+
+/* ================================================================= */
+/* ==  RECREATION: `\` prefix on file-tree folders                  == */
+/* ==  The original hid the folder chevron and drew a green `\` in   == */
+/* ==  its place (`.nav-folder-collapse-indicator`). In 1.x the file == */
+/* ==  tree became a generic tree-item, so the chevron is now        == */
+/* ==  `.collapse-icon` and the old class no longer matches — hence  == */
+/* ==  the default `>` showed. Re-target the modern class (scoped to == */
+/* ==  folder titles, so files are unaffected, matching the original).== */
+/* ================================================================= */
+.nav-folder-title .collapse-icon svg {
+  display: none !important;
+}
+/* keep our glyph upright regardless of Obsidian's built-in chevron rotation, so
+   the collapsed/expanded difference comes only from the character swap below */
+.nav-folder-title .collapse-icon {
+  transform: none !important;
+}
+.nav-folder-title .collapse-icon::after {
+  content: "\\";                 /* collapsed folder: leaning `\` */
+  color: var(--text-accent2);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+}
+/* expanded folder: flip the marker to `/` so open ≠ closed at a glance */
+.nav-folder:not(.is-collapsed) > .nav-folder-title .collapse-icon::after {
+  content: "/";
 }
 
 /* command palette / quick switcher: retint the magenta selection
