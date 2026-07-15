@@ -1,5 +1,7 @@
 # Ono-Sendai (modernized)
 
+I found a neat Obsidian theme but it was old and has not been updated. 
+
 **A modernized recreation of the [ono-sendai](https://github.com/cannibalox/ono-sendai_obsdn)
 Obsidian theme — a terminal / retro-cyberpunk look — rebuilt for Obsidian 1.x.**
 
@@ -15,13 +17,6 @@ headings, edit-mode margins, neon graph view, colored tag pills, focus mode).
 > loads. Full credit to the original author **_ph / www.hpx1.com**.
 
 ### description
-
-a terminal retro-look for Obsidian
-
-https://github.com/cannibalox/ono-sendai_obsdn/assets/4605693/28669765-4f7f-454d-856b-b34e303f05b3
-
-![](https://raw.githubusercontent.com/cannibalox/ono-sendai_obsdn/master/ono-sendai_obsdn_00.png)
-![](https://raw.githubusercontent.com/cannibalox/ono-sendai_obsdn/master/ono-sendai_obsdn_001.png)
 
 #### features
 
@@ -54,10 +49,3 @@ https://github.com/cannibalox/ono-sendai_obsdn/assets/4605693/28669765-4f7f-454d
 - create a folder `Ono-Sendai` in `<your-vault>/.obsidian/themes/`
 - copy **`manifest.json`** and **`theme.css`** into it
 - in Obsidian: **Settings → Appearance → Themes → Manage → select "Ono-Sendai"** (or set `"cssTheme": "Ono-Sendai"` directly in `.obsidian/appearance.json`)
-- the screenshots use the Cairo font: https://fonts.google.com/specimen/Cairo (install it locally before running Obsidian)
-
-![](https://raw.githubusercontent.com/cannibalox/ono-sendai_obsdn/master/ono-sendai_obsdn_00a.png)
-![](https://raw.githubusercontent.com/cannibalox/ono-sendai_obsdn/master/ono-sendai_obsdn_002.png)
-![](https://raw.githubusercontent.com/cannibalox/ono-sendai_obsdn/master/ono-sendai_obsdn_003.png)
-![](https://raw.githubusercontent.com/cannibalox/ono-sendai_obsdn/master/ono-sendai_obsdn_004.png)
-![](https://raw.githubusercontent.com/cannibalox/ono-sendai_obsdn/master/ono-sendai_obsdn_005.png)
