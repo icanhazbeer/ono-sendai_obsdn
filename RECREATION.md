@@ -49,8 +49,15 @@ a live visual spot-check (see **Verification** below) · `[ ]` not started.
       2026-07-14. → `theme.css` "RECREATION: `:: ono-sendai` status-bar wordmark".
 - [ ] **`<<prev` / `next>>` nav text** — back/forward buttons as text; needs a
       macOS-window-frame-aware placement (the titlebar CSS exists but is hidden).
-- [ ] **Translucency / wallpaper** — the `is-translucent` neon-hallway bleed-through;
-      CSS is present but never exercised. Decide if worth wiring for 1.x.
+- [x] **Translucency / wallpaper** — the `is-translucent` bleed-through. Rebuilt
+      for 1.x: the 2022 build faded whole containers with `opacity` (washing out
+      text/icons too) and predated the modern DOM. Replaced with rgba overrides of
+      the `--background-*` palette vars under `.is-translucent` (theme doesn't
+      hardcode content bgs, so all `var()` consumers turn translucent uniformly
+      while text stays fully opaque), dropped the color-distorting `filter`, and
+      neutralized the old opacity fades. Alpha ~0.4 (tunable). Verified live
+      2026-07-14 with Obsidian's "Translucent window" on (backdrop bleeds through;
+      most visible over bright content). → `theme.css` "translucency fx (rebuilt…)".
 - [ ] **Near-black background default** — original "pro mode" is `#000`; currently
       defaults to `#17191a`. Decide default vs. optional.
 
@@ -72,6 +79,19 @@ NOT yet been eyeballed in a running app. Spot-check when next in Obsidian:
 - [x] Graph view: magenta nodes, teal links on black
 - [x] Pink/magenta inline code; colored tag pills; green `==highlights==` (spot-check)
 - [x] Monospace terminal editor, per-tag colors, accent unification
+
+## Possible directions (beyond the original)
+
+- [ ] **Alternate "Tessier-Ashpool" color scheme** — an optional palette variant
+      (Neuromancer deep cut: T-A is the corp, Ono-Sendai the deck maker). Reference:
+      `ref-tessier-ashpool-palette.png` (the "TA" boot logo). Palette reads as a
+      teal/green → magenta vertical gradient on black, more magenta/purple-forward
+      than the current cyan/green-forward theme: TA monogram fades cyan-green (top)
+      → magenta (bottom), "TESSIER-ASHPOOL" magenta, "CYBERSECURITY DIVISION" teal,
+      purple/magenta gradient chrome. Would swap the accent vars (`--text-accent`,
+      `--text-accent2`, `--interactive-accent`, `--accent-strong`) toward that
+      duotone; possibly ship as a style-settings option rather than replacing the
+      default. Pick exact hues from the reference image.
 
 ## Notes
 
