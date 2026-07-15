@@ -3561,12 +3561,12 @@ body.ono-scheme-zion .workspace-split.mod-root .workspace-tab-header.is-active {
 body.ono-scheme-zion .status-bar::after { content: ":: zion"; }
 
 /* --- Panther Moderns: glitch-anarchist — acid green on black (high-contrast) --- */
-body.ono-scheme-panther.theme-dark {           /* greens spread across the spectrum */
-  --text-accent: #2fe85a;             /* emerald    — H1/links, `::` */
-  --text-accent2: #d0ff33;            /* chartreuse — H2 */
-  --interactive-accent: #39ff14;      /* neon green — accent lines */
-  --interactive-accent-rgb: 57, 255, 20;
-  --accent-strong: #aaff00;           /* lime       — wordmark name */
+body.ono-scheme-panther.theme-dark {           /* green headings + magenta complementary accent */
+  --text-accent: #2fe85a;             /* emerald     — H1/links, `::` */
+  --text-accent2: #d0ff33;            /* chartreuse  — H2 */
+  --interactive-accent: #ff2ea6;      /* hot magenta — complement (tags, tab lines, selection) */
+  --interactive-accent-rgb: 255, 46, 166;
+  --accent-strong: #aaff00;           /* lime        — wordmark name */
 }
 body.ono-scheme-panther .workspace-split.mod-root .workspace-tab-header.is-active {
   background-color: #1a2e12;           /* dark green */
@@ -3574,11 +3574,11 @@ body.ono-scheme-panther .workspace-split.mod-root .workspace-tab-header.is-activ
 body.ono-scheme-panther .status-bar::after { content: ":: panther moderns"; }
 
 /* --- Dixie Flatline: dead-channel CRT — amber monochrome (single phosphor) --- */
-body.ono-scheme-dixie.theme-dark {             /* ambers spread across the spectrum */
+body.ono-scheme-dixie.theme-dark {             /* amber headings + cyan complementary accent */
   --text-accent: #ffc94d;             /* light yellow-amber — H1/links, `::` */
   --text-accent2: #ff8c1a;            /* orange             — H2 */
-  --interactive-accent: #b35f00;      /* burnt amber        — accent lines */
-  --interactive-accent-rgb: 179, 95, 0;
+  --interactive-accent: #35c8d0;      /* cyan               — complement (tags, tab lines, selection) */
+  --interactive-accent-rgb: 53, 200, 208;
   --accent-strong: #ff9500;           /* orange-amber       — wordmark name */
 }
 body.ono-scheme-dixie .workspace-split.mod-root .workspace-tab-header.is-active {
