@@ -1769,36 +1769,50 @@ div[aria-label="Close window"] {
 .titlebar-button-container.mod-right {
   right: 3px;
 }
-/*=============== transluscency fx ================*/
+/*=============== translucency fx (rebuilt for Obsidian 1.x) =======*/
+/* The 2022 build faded whole containers with `opacity`, which also fades the
+   text/icons (washed-out) and predates the 1.x DOM. Instead make the panel
+   BACKGROUNDS semi-transparent via rgba overrides of the palette vars: the
+   theme doesn't hardcode content backgrounds, so everything that reads
+   `--background-*` (editor, sidebars, tabs, code, callouts) turns translucent
+   uniformly while Obsidian's own text/icons stay fully opaque and crisp.
+   Tune the alpha values to taste (higher = more solid, lower = more wallpaper). */
 body.is-translucent {
   background-color: transparent;
 }
-.theme-dark {--opacity-translucency: 0.7;}
-.theme-light { --opacity-translucency: 0.5; }
-
-.is-translucent.theme-light .titlebar { opacity: 0.8; }
-.is-translucent.theme-dark .titlebar { opacity: 1; }
-.is-translucent img { background-color: transparent; filter: contrast(1.12) brightness(0.74); opacity:1;}
-.is-translucent .workspace { background-color: transparent; filter: contrast(1.2) brightness(1.34);}
-.is-translucent .workspace-split.mod-root { opacity: var(--opacity-translucency); }
-.is-translucent.theme-light .workspace-leaf-resize-handle { opacity: 0.1; background-color: var(--background-secondary-alt);}
-.is-translucent.theme-dark .workspace-leaf-resize-handle { opacity: 1; background-color: var(--background-secondary-alt);}
-.is-translucent .workspace-leaf-resize-handle:hover { background-color: rgba(var(--interactive-accent-rgb), 0.8); }
-.is-translucent.theme-light .workspace-ribbon { opacity: 0.55; }
-.is-translucent.theme-dark .workspace-ribbon { opacity: 1; }
-.is-translucent .workspace-tabs { opacity: 0.6; }
-.is-translucent.theme-dark .status-bar {
-   opacity: 1; 
-   border-top: 0px solid var(--background-secondary-alt); 
-   margin: 0px 0px; }
-.is-translucent.theme-light .status-bar {
-    opacity: 0.8; 
-    border-top: 0px solid var(--background-secondary-alt); 
-    margin: 0px 0px; }
+.is-translucent .workspace {
+  background-color: transparent;   /* was also `filter: contrast/brightness` — dropped; it distorted the palette */
+}
+.is-translucent.theme-dark {
+  --background-primary: rgba(23, 25, 26, 0.4);
+  --background-primary-alt: rgba(5, 5, 5, 0.46);
+  --background-secondary: rgba(15, 81, 114, 0.36);
+  --background-secondary-alt: rgba(0, 0, 0, 0.36);
+}
+.is-translucent.theme-light {
+  --background-primary: rgba(209, 202, 191, 0.4);
+  --background-primary-alt: rgba(224, 222, 210, 0.46);
+  --background-secondary: rgba(238, 177, 87, 0.36);
+  --background-secondary-alt: rgba(190, 182, 170, 0.4);
+}
+/* the tint now lives in the rgba backgrounds, so keep containers fully opaque
+   (the old opacity fades made the UI itself see-through, not just the bg) */
+.is-translucent .workspace-split.mod-root,
+.is-translucent .workspace-tabs,
+.is-translucent .workspace-ribbon,
+.is-translucent .titlebar {
+  opacity: 1;
+}
+/* resize handles + embedded iframes: subtle, don't block the bleed-through */
+.is-translucent .workspace-leaf-resize-handle {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+.is-translucent .workspace-leaf-resize-handle:hover {
+  background-color: rgba(var(--interactive-accent-rgb), 0.8);
+}
 .is-translucent.theme-dark .view-content > iframe {
-    background-color: rgb(1, 12, 10) !important;
-    opacity: 1;
-  }
+  background-color: rgb(1, 12, 10) !important;
+}
 /*=============== add mods below ================*/
 /*=============== add mods below ================*/
 
@@ -2939,17 +2953,22 @@ body {
 .status-bar::after {
   content: ":: ono-sendai";
   position: fixed;
-  left: 12px;
-  bottom: 0;
-  height: 22px;
-  line-height: 22px;
+  left: 7px;
+  bottom: 10px;
+  /* run the wordmark vertically up the left edge, reading bottom-to-top. Use
+     writing-mode (+180° flip) rather than a corner-rotate: rotating -90deg
+     around the bottom-left corner swung the text's line-height off the left
+     edge of the window, so it rendered just off-screen. */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
   color: var(--accent-strong);
   font-family: var(--font-monospace, ui-monospace, monospace);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
   pointer-events: none;
-  z-index: var(--layer-status-bar);
+  z-index: 999;   /* above the left ribbon, which the rotated wordmark runs up over */
 }
 
 /* ---- sidebar icon sizing: modern Obsidian renders nav/pane header
