@@ -55,7 +55,9 @@ a live visual spot-check (see **Verification** below) · `[ ]` not started.
       the `--background-*` palette vars under `.is-translucent` (theme doesn't
       hardcode content bgs, so all `var()` consumers turn translucent uniformly
       while text stays fully opaque), dropped the color-distorting `filter`, and
-      neutralized the old opacity fades. Alpha ~0.4 (tunable). Verified live
+      neutralized the old opacity fades. Alpha is one var `--ono-translucency`
+      (~0.4), exposed as a **Style Settings slider** (Settings → Style Settings →
+      Ono-Sendai → Window transparency). Verified live
       2026-07-14 with Obsidian's "Translucent window" on (backdrop bleeds through;
       most visible over bright content). → `theme.css` "translucency fx (rebuilt…)".
 - [ ] **Near-black background default** — original "pro mode" is `#000`; currently

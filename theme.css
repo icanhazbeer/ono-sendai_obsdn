@@ -1769,6 +1769,23 @@ div[aria-label="Close window"] {
 .titlebar-button-container.mod-right {
   right: 3px;
 }
+/* @settings
+
+name: Ono-Sendai
+id: ono-sendai
+settings:
+  -
+    id: ono-translucency
+    title: Window transparency
+    description: Only takes effect when Obsidian's "Translucent window" (Settings → Appearance) is ON. Higher = more solid panels, lower = more wallpaper bleed-through.
+    type: variable-number-slider
+    default: 0.4
+    min: 0.15
+    max: 0.9
+    step: 0.05
+
+*/
+
 /*=============== translucency fx (rebuilt for Obsidian 1.x) =======*/
 /* The 2022 build faded whole containers with `opacity`, which also fades the
    text/icons (washed-out) and predates the 1.x DOM. Instead make the panel
@@ -1776,7 +1793,10 @@ div[aria-label="Close window"] {
    theme doesn't hardcode content backgrounds, so everything that reads
    `--background-*` (editor, sidebars, tabs, code, callouts) turns translucent
    uniformly while Obsidian's own text/icons stay fully opaque and crisp.
-   Tune the alpha values to taste (higher = more solid, lower = more wallpaper). */
+   Strength is one variable, --ono-translucency (exposed as a Style Settings
+   slider). Defined on `body` at low specificity so Style Settings' body-level
+   override wins; higher = more solid, lower = more wallpaper bleed-through. */
+body { --ono-translucency: 0.4; }
 body.is-translucent {
   background-color: transparent;
 }
@@ -1784,16 +1804,16 @@ body.is-translucent {
   background-color: transparent;   /* was also `filter: contrast/brightness` — dropped; it distorted the palette */
 }
 .is-translucent.theme-dark {
-  --background-primary: rgba(23, 25, 26, 0.4);
-  --background-primary-alt: rgba(5, 5, 5, 0.46);
-  --background-secondary: rgba(15, 81, 114, 0.36);
-  --background-secondary-alt: rgba(0, 0, 0, 0.36);
+  --background-primary: rgba(23, 25, 26, var(--ono-translucency));
+  --background-primary-alt: rgba(5, 5, 5, var(--ono-translucency));
+  --background-secondary: rgba(15, 81, 114, var(--ono-translucency));
+  --background-secondary-alt: rgba(0, 0, 0, var(--ono-translucency));
 }
 .is-translucent.theme-light {
-  --background-primary: rgba(209, 202, 191, 0.4);
-  --background-primary-alt: rgba(224, 222, 210, 0.46);
-  --background-secondary: rgba(238, 177, 87, 0.36);
-  --background-secondary-alt: rgba(190, 182, 170, 0.4);
+  --background-primary: rgba(209, 202, 191, var(--ono-translucency));
+  --background-primary-alt: rgba(224, 222, 210, var(--ono-translucency));
+  --background-secondary: rgba(238, 177, 87, var(--ono-translucency));
+  --background-secondary-alt: rgba(190, 182, 170, var(--ono-translucency));
 }
 /* the tint now lives in the rgba backgrounds, so keep containers fully opaque
    (the old opacity fades made the UI itself see-through, not just the bg) */
@@ -3477,7 +3497,12 @@ body.ono-scheme-turing.theme-dark {
 }
 body.ono-scheme-turing .workspace-split.mod-root .workspace-tab-header.is-active {
   background-color: #4a2020;           /* red-grey */
+  border-top-color: var(--text-accent2);    /* amber accent line, not red */
 }
+body.ono-scheme-turing .workspace-split.mod-root .workspace-tab-header-container {
+  border-bottom-color: var(--text-accent2); /* amber row divider */
+}
+body.ono-scheme-turing .ono-wordmark .ono-mark { color: var(--text-accent2); } /* red name / amber :: */
 body.ono-scheme-turing .status-bar::after { content: ":: turing police"; }
 
 /* --- Sense/Net: gold / hot-pink / broadcast-blue (media megacorp gloss) --- */
@@ -3504,6 +3529,8 @@ body.ono-scheme-wintermute.theme-dark {
 body.ono-scheme-wintermute .workspace-split.mod-root .workspace-tab-header.is-active {
   background-color: #23303d;           /* slate-grey */
 }
+body.ono-scheme-wintermute .ono-wordmark { color: #d8e6f0; }           /* light steel name */
+body.ono-scheme-wintermute .ono-wordmark .ono-mark { color: #4a90c8; } /* saturated ice :: */
 body.ono-scheme-wintermute .status-bar::after { content: ":: wintermute"; }
 
 /* --- Neuromancer: warm AI — coral / soft-gold / rose-wine (seductive) --- */
@@ -3517,6 +3544,7 @@ body.ono-scheme-neuromancer.theme-dark {
 body.ono-scheme-neuromancer .workspace-split.mod-root .workspace-tab-header.is-active {
   background-color: #3d2230;           /* wine-grey */
 }
+body.ono-scheme-neuromancer .ono-wordmark .ono-mark { color: var(--text-accent2); } /* rose name / gold :: */
 body.ono-scheme-neuromancer .status-bar::after { content: ":: neuromancer"; }
 
 /* --- Zion cluster: dub / Rasta — green / gold / red (earthy) --- */
@@ -3533,12 +3561,12 @@ body.ono-scheme-zion .workspace-split.mod-root .workspace-tab-header.is-active {
 body.ono-scheme-zion .status-bar::after { content: ":: zion"; }
 
 /* --- Panther Moderns: glitch-anarchist — acid green on black (high-contrast) --- */
-body.ono-scheme-panther.theme-dark {
-  --text-accent: #8dff2e;             /* acid green */
-  --text-accent2: #c8ff4d;            /* lime */
-  --interactive-accent: #39ff14;      /* neon green */
+body.ono-scheme-panther.theme-dark {           /* greens spread across the spectrum */
+  --text-accent: #2fe85a;             /* emerald    — H1/links, `::` */
+  --text-accent2: #d0ff33;            /* chartreuse — H2 */
+  --interactive-accent: #39ff14;      /* neon green — accent lines */
   --interactive-accent-rgb: 57, 255, 20;
-  --accent-strong: #b6ff00;
+  --accent-strong: #aaff00;           /* lime       — wordmark name */
 }
 body.ono-scheme-panther .workspace-split.mod-root .workspace-tab-header.is-active {
   background-color: #1a2e12;           /* dark green */
@@ -3546,12 +3574,12 @@ body.ono-scheme-panther .workspace-split.mod-root .workspace-tab-header.is-activ
 body.ono-scheme-panther .status-bar::after { content: ":: panther moderns"; }
 
 /* --- Dixie Flatline: dead-channel CRT — amber monochrome (single phosphor) --- */
-body.ono-scheme-dixie.theme-dark {
-  --text-accent: #ffb000;             /* amber */
-  --text-accent2: #ff8c00;            /* deep amber */
-  --interactive-accent: #cc7000;      /* burnt amber */
-  --interactive-accent-rgb: 204, 112, 0;
-  --accent-strong: #ffb000;
+body.ono-scheme-dixie.theme-dark {             /* ambers spread across the spectrum */
+  --text-accent: #ffc94d;             /* light yellow-amber — H1/links, `::` */
+  --text-accent2: #ff8c1a;            /* orange             — H2 */
+  --interactive-accent: #b35f00;      /* burnt amber        — accent lines */
+  --interactive-accent-rgb: 179, 95, 0;
+  --accent-strong: #ff9500;           /* orange-amber       — wordmark name */
 }
 body.ono-scheme-dixie .workspace-split.mod-root .workspace-tab-header.is-active {
   background-color: #3a2a10;           /* amber-grey */
@@ -3559,16 +3587,17 @@ body.ono-scheme-dixie .workspace-split.mod-root .workspace-tab-header.is-active 
 body.ono-scheme-dixie .status-bar::after { content: ":: dixie flatline"; }
 
 /* --- Freeside / Straylight: orbital luxury — gold / ivory / wine (opulent) --- */
-body.ono-scheme-freeside.theme-dark {
-  --text-accent: #d9b44a;             /* gold */
-  --text-accent2: #efe6d0;            /* ivory */
-  --interactive-accent: #7a2f3a;      /* wine */
-  --interactive-accent-rgb: 122, 47, 58;
-  --accent-strong: #c9a227;           /* rich gold */
+body.ono-scheme-freeside.theme-dark {          /* richer, warmer luxury */
+  --text-accent: #e5c158;             /* warm gold — H1/links */
+  --text-accent2: #f0dfa8;            /* champagne — H2 (warm, not cold near-white) */
+  --interactive-accent: #b04a5a;      /* brighter wine/burgundy — accent lines */
+  --interactive-accent-rgb: 176, 74, 90;
+  --accent-strong: #d4af37;           /* classic gold — wordmark name */
 }
 body.ono-scheme-freeside .workspace-split.mod-root .workspace-tab-header.is-active {
   background-color: #3a2a2e;           /* wine-grey */
 }
+body.ono-scheme-freeside .ono-wordmark .ono-mark { color: var(--text-accent2); } /* gold name / champagne :: */
 body.ono-scheme-freeside .status-bar::after { content: ":: freeside"; }
 
 /* ---- interactive wordmark (rendered by the companion plugin) ---- */
