@@ -19,10 +19,16 @@ const CLICK_WINDOW_MS = 1500; // consecutive clicks must land within this gap
 
 // The cycle. `cls` empty = the theme's default (Ono-Sendai) look.
 const SCHEMES = [
-  { cls: '',                    name: 'ono-sendai' },
-  { cls: 'ono-scheme-tessier',  name: 'tessier-ashpool' },
-  { cls: 'ono-scheme-turing',   name: 'turing police' },
-  { cls: 'ono-scheme-sensenet', name: 'sense/net' },
+  { cls: '',                      name: 'ono-sendai' },
+  { cls: 'ono-scheme-tessier',    name: 'tessier-ashpool' },
+  { cls: 'ono-scheme-turing',     name: 'turing police' },
+  { cls: 'ono-scheme-sensenet',   name: 'sense/net' },
+  { cls: 'ono-scheme-wintermute', name: 'wintermute' },
+  { cls: 'ono-scheme-neuromancer', name: 'neuromancer' },
+  { cls: 'ono-scheme-zion',       name: 'zion' },
+  { cls: 'ono-scheme-panther',    name: 'panther moderns' },
+  { cls: 'ono-scheme-dixie',      name: 'dixie flatline' },
+  { cls: 'ono-scheme-freeside',   name: 'freeside' },
 ];
 const SCHEME_CLASSES = SCHEMES.map((s) => s.cls).filter(Boolean);
 

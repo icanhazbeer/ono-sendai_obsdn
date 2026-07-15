@@ -102,14 +102,15 @@ NOT yet been eyeballed in a running app. Spot-check when next in Obsidian:
       live-tested end-to-end: the vault runs with Community plugins disabled
       (Restricted mode) — enable the plugin to try it (`companion-plugin/README.md`).
 
-- [ ] **More faction schemes (ideas)** — candidates to extend the cycle: add a
-      `body.ono-scheme-*` palette + a `SCHEMES` entry in the companion plugin.
-      - **wintermute** — cold AI: steel-white / ice-blue / slate (clinical, minimal)
-      - **neuromancer** — the warm opposite: rose / gold / crimson (seductive)
+- [~] **Six more faction schemes** — built; the cycle is now 10 schemes
+      (`body.ono-scheme-*` + `SCHEMES` entries in the plugin). All palettes
+      reviewed via a swatch comparison 2026-07-15 (coherent + distinct):
+      - **wintermute** — cold AI: ice-blue / steel / slate (clinical)
+      - **neuromancer** — warm opposite: coral / soft-gold / rose-wine (seductive)
       - **zion** — dub/Rasta colony: green / gold / red (earthy)
       - **panther moderns** — glitch-anarchist: acid-green on black (high-contrast)
-      - **dixie flatline** — dead-channel CRT monochrome: single-hue phosphor
-      - **freeside / straylight** — decadent orbital luxury: gold / ivory / wine
+      - **dixie flatline** — dead-channel CRT: amber monochrome (single phosphor)
+      - **freeside** — orbital luxury: gold / ivory / wine (opulent)
 
 ## Notes
 

@@ -3493,6 +3493,84 @@ body.ono-scheme-sensenet .workspace-split.mod-root .workspace-tab-header.is-acti
 }
 body.ono-scheme-sensenet .status-bar::after { content: ":: sense/net"; }
 
+/* --- Wintermute: cold AI — ice-blue / steel / slate (clinical, minimal) --- */
+body.ono-scheme-wintermute.theme-dark {
+  --text-accent: #74b9e8;             /* ice blue */
+  --text-accent2: #cdd9e2;            /* pale steel */
+  --interactive-accent: #4a6f8c;      /* slate */
+  --interactive-accent-rgb: 74, 111, 140;
+  --accent-strong: #9ec6e0;
+}
+body.ono-scheme-wintermute .workspace-split.mod-root .workspace-tab-header.is-active {
+  background-color: #23303d;           /* slate-grey */
+}
+body.ono-scheme-wintermute .status-bar::after { content: ":: wintermute"; }
+
+/* --- Neuromancer: warm AI — coral / soft-gold / rose-wine (seductive) --- */
+body.ono-scheme-neuromancer.theme-dark {
+  --text-accent: #ff9e7a;             /* coral */
+  --text-accent2: #ffd27f;            /* soft gold */
+  --interactive-accent: #b83a5e;      /* rose-wine */
+  --interactive-accent-rgb: 184, 58, 94;
+  --accent-strong: #ff7a95;           /* rose */
+}
+body.ono-scheme-neuromancer .workspace-split.mod-root .workspace-tab-header.is-active {
+  background-color: #3d2230;           /* wine-grey */
+}
+body.ono-scheme-neuromancer .status-bar::after { content: ":: neuromancer"; }
+
+/* --- Zion cluster: dub / Rasta — green / gold / red (earthy) --- */
+body.ono-scheme-zion.theme-dark {
+  --text-accent: #35c46a;             /* green */
+  --text-accent2: #f5c518;            /* gold */
+  --interactive-accent: #d62828;      /* red */
+  --interactive-accent-rgb: 214, 40, 40;
+  --accent-strong: #f5c518;           /* gold */
+}
+body.ono-scheme-zion .workspace-split.mod-root .workspace-tab-header.is-active {
+  background-color: #1f3a24;           /* green-grey */
+}
+body.ono-scheme-zion .status-bar::after { content: ":: zion"; }
+
+/* --- Panther Moderns: glitch-anarchist — acid green on black (high-contrast) --- */
+body.ono-scheme-panther.theme-dark {
+  --text-accent: #8dff2e;             /* acid green */
+  --text-accent2: #c8ff4d;            /* lime */
+  --interactive-accent: #39ff14;      /* neon green */
+  --interactive-accent-rgb: 57, 255, 20;
+  --accent-strong: #b6ff00;
+}
+body.ono-scheme-panther .workspace-split.mod-root .workspace-tab-header.is-active {
+  background-color: #1a2e12;           /* dark green */
+}
+body.ono-scheme-panther .status-bar::after { content: ":: panther moderns"; }
+
+/* --- Dixie Flatline: dead-channel CRT — amber monochrome (single phosphor) --- */
+body.ono-scheme-dixie.theme-dark {
+  --text-accent: #ffb000;             /* amber */
+  --text-accent2: #ff8c00;            /* deep amber */
+  --interactive-accent: #cc7000;      /* burnt amber */
+  --interactive-accent-rgb: 204, 112, 0;
+  --accent-strong: #ffb000;
+}
+body.ono-scheme-dixie .workspace-split.mod-root .workspace-tab-header.is-active {
+  background-color: #3a2a10;           /* amber-grey */
+}
+body.ono-scheme-dixie .status-bar::after { content: ":: dixie flatline"; }
+
+/* --- Freeside / Straylight: orbital luxury — gold / ivory / wine (opulent) --- */
+body.ono-scheme-freeside.theme-dark {
+  --text-accent: #d9b44a;             /* gold */
+  --text-accent2: #efe6d0;            /* ivory */
+  --interactive-accent: #7a2f3a;      /* wine */
+  --interactive-accent-rgb: 122, 47, 58;
+  --accent-strong: #c9a227;           /* rich gold */
+}
+body.ono-scheme-freeside .workspace-split.mod-root .workspace-tab-header.is-active {
+  background-color: #3a2a2e;           /* wine-grey */
+}
+body.ono-scheme-freeside .status-bar::after { content: ":: freeside"; }
+
 /* ---- interactive wordmark (rendered by the companion plugin) ---- */
 /* the plugin adds `ono-sendai-interactive` to <body> and draws its own
    clickable wordmark, so hide the static pseudo to avoid doubling up */
